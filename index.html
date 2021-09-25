@@ -5,11 +5,16 @@
 <title>BG1: An Unofficial, Experimental Boarding Group Client</title>
 <script id=bm-script>
   (() => {
-    var u = '{origin}/bg1/index.', d = document;
-    d.open();
-    d.write('<link rel=stylesheet href="' + u + 'css"><script type=module><\/script><body>');
-    d.scripts[0].src = u + 'js';
+    var u = '{origin}/bg1/', d = document, l = location;
+    if (l.origin.match(/https:\/\/vqguest-svc[^.]*\.wdprapps\.disney\.com/)) {
+      d.open();
+      d.write('<!doctype html><link rel=stylesheet href="' + u + 'index.css"><script type=module><\/script><body>');
+      d.scripts[0].src = u + 'index.js';
+    } else {
+      l.href = u + 'start.html';
+    }
   })
+
 </script>
 
 <style>
@@ -32,7 +37,8 @@
 
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     font-weight: 600;
   }
 
@@ -48,13 +54,16 @@
     font-size: 17px;
   }
 
+  h4 {
+    font-size: 16px;
+  }
+
   ol,
   ul {
     padding-left: 1.5em;
   }
 
   dt {
-    font-size: 17px;
     font-weight: 600;
   }
 
@@ -139,7 +148,7 @@
 
   <h2>What is BG1?</h2>
 
-  <p>BG1 is an experimental client for obtaining a boarding group for the popular Star Wars: Rise of the Resistance attraction at Disney's Hollywood Studios theme park in Walt Disney World. (While the attraction also exists in Disneyland, BG1 does not support it.)
+  <p>BG1 is an experimental client for obtaining a boarding group for attractions using Disney's virtual queue system.
 
   <p>The code is open source and <a href="https://github.com/joelface/bg1">available on GitHub</a>.
 
@@ -184,7 +193,7 @@
         <li>Bookmark this page.
         <li>Edit the bookmark you just created. In some browsers, a message will pop up with an <samp>Edit</samp> button after you create the bookmark. Otherwise, you'll have to scroll through your browser's bookmark list to edit it. The name of the bookmark should be <samp>BG1 Bookmarklet</samp>.
         <li>Delete the bookmark's URL/address field, paste the text you copied in the first step, and save the bookmark.
-        <li>The bookmarklet will only function if it's activated from a valid page, so you also need to bookmark this link: <a href="https://vqguest-svc-wdw.wdprapps.disney.com/application/v1/guest/getQueues">BG1 Start Page</a>
+        <li><b>Android users:</b> Chrome on Android can't run bookmarklets from the default new tab page, so I recommend that you bookmark the <a href="start.html">BG1 Start Page</a> as well, and go there first every time before using the BG1 bookmarklet.
       </ol>
       <div class=button><button onclick="hideInstructions()">Done</button></div>
     </div>
@@ -215,8 +224,27 @@
 
   <h3>Using the bookmarklet</h3>
 
-  <p>In most mobile browsers, you can use a bookmarklet the same as any other bookmark by tapping it in your browser's bookmark list. One notable exception to this is Chrome on Android. In Chrome, you need to search for it in the address/search bar and tap it in the suggestions list that pops up. Just type <kbd>BG1</kbd> and look for <samp>BG1 Bookmarklet</samp>.
-  <p>Don't forget that before using the bookmarklet you have to be on the "BG1 Start Page" that you bookmarked at the end of the setup guide.
+  <p>Please note: The bookmarklet has been updated to support Disneyland as well as Walt Disney World. It also now does a better job of helping you out if you try to load it from the wrong page. Those using the older, WDW-only version of the bookmarklet may wish to go through the setup guide again to update it, but it isn't required.
+
+  <p>BG1 is supported on the default Web browsers on both iPhone (Safari) and Android (Chrome). The process for loading BG1 is a little different on each:
+
+  <h4>iPhone (Safari)</h4>
+
+  <ol>
+    <li>Run the BG1 bookmarklet, which will load the BG1 Start Page.
+    <li>Select either Walt Disney World or Disneyland.
+    <li>Run the BG1 bookmarklet again.
+  </ol>
+
+  <h4>Android (Chrome)</h4>
+
+  <ol>
+    <li>Go to the <a href="start.html">BG1 Start Page</a> that you bookmarked during setup.
+    <li>Select either Walt Disney World or Disneyland.
+    <li>Type <kbd>BG1</kbd> into the address/search bar at the top and then tap <samp>BG1 Bookmarklet</samp> in the suggestions list.
+  </ol>
+
+  <p>The BG1 client should load after following these steps.
 
   <h2>Frequently Unasked Questions</h2>
 
@@ -224,10 +252,10 @@
     <dt>Why does BG1 make me sign into my Disney account?
     <dd>
       <p>To be able to make the authenticated requests required to join a boarding group, BG1 needs an access token obtained by signing into your Disney account. This access token, which is only valid for a 24 hour period, is the only piece of data stored (locally in your browser) as a result of the login process.
-      <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the MDE app on a new device.
+      <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the Disney app or website on a new device.
     <dt>Why not a mobile app? Wouldn't you be able to make this easier to use?
     <dd>
-      <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I'm making public in the faint hope that some of the ideas in it might eventually make their way into the official app.
+      <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I made public in the apparently not-so-faint hope that some of the ideas in it might eventually make their way into the official app.
     <dt>This is pretty neat! Are you looking for a job, by chance?
     <dd>
       <p>I am, actually! I'm a full stack Web developer who enjoys using TypeScript/JavaScript, React, PHP, Python, SQL, CSS, and more, and I'm looking for full-time employment opportunities (especially if they allow for remote work). Just tap the button below to get in touch.
