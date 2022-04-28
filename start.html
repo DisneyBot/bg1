@@ -1,56 +1,47 @@
 <!doctype html>
-<html lang=en-US>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width, initial-scale=1">
-<title>BG1 Start Page</title>
-<style>
-  html {
-    font: 16px/1.5 -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-    background: #f9f9f9;
-    color: #000;
+<html lang="en-US">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BG1 Start</title>
+<link rel="stylesheet" href="index.css">
+
+<header>
+  <h1>BG1 Start</h1>
+</header>
+
+<main>
+  <nav>
+    <h2>Walt Disney World</h2>
+    <ul class="buttons">
+      <li><a href="https://disneyworld.disney.go.com/vas/">Genie+</a></li>
+      <li><a href="https://vqguest-svc-wdw.wdprapps.disney.com/application/v1/guest/getQueues">Virtual Queue</a></li>
+    </ul>
+
+    <h2>Disneyland</h2>
+    <ul class="buttons">
+      <li>
+        Genie+ Coming Soon!
+        <!--<a href="https://disneyland.disney.go.com/vas/">Genie+</a>-->
+      </li>
+      <li><a href="https://vqguest-svc.wdprapps.disney.com/application/v1/guest/getQueues">Virtual Queue</a></li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <ul>
+    <li><a href=".">Documentation</a></li>
+    <li><a href="contact.html">Contact Me</a></li>
+    <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
+  </ul>
+</footer>
+
+<script>
+  function showInstructions() {
+    alert('After the "code" page loads, you need to run the BG1 Bookmarklet again to load the BG1 interface.');
   }
 
-  body {
-    margin: 0 auto;
-    padding: 0 .8em;
-    max-width: 48em;
-  }
-
-  h1 {
-    font-size: 30px;
-    font-weight: 600;
-  }
-
-  .buttons {
-    list-style: none;
-    margin: 1.5em 0;
-    padding: 0;
-    text-align: center;
-  }
-
-  .buttons li {
-    margin-top: 1.5em;
-  }
-
-  .buttons a {
-    display: block;
-    font: inherit;
-    border: 0;
-    border-radius: 8px;
-    padding: 12px;
-    background: #3b82f6;
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-  }
-</style>
-
-<h1>BG1 Start Page</h1>
-
-<p>Select your location. When you see the page of code, you need to run the BG1 bookmarklet again.
-
-<ul class=buttons>
-  <li><a href="https://vqguest-svc-wdw.wdprapps.disney.com/application/v1/guest/getQueues">Walt Disney World</a>
-  <li><a href="https://vqguest-svc.wdprapps.disney.com/application/v1/guest/getQueues">Disneyland</a>
-</ul>
+  document.querySelectorAll('.buttons a').forEach(a => {
+    a.addEventListener('click', showInstructions);
+  });
+</script>

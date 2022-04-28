@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-US">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BG1: Contact Me</title>
+<link rel="stylesheet" href="index.css">
+<style>
+  .plsnospam:after {
+    content: ": "attr(data-a1) attr(data-a2);
+  }
+</style>
+
+<header>
+  <h1>Contact Me</h1>
+</header>
+
+<main>
+  <p>Hi, I'm Joel, the creator of BG1.</p>
+
+  <p>I enjoy using TypeScript/JavaScript, React, PHP, Python, SQL, CSS, and more (always willing to learn something new!), and I'm looking for full-time remote work opportunities. Let's talk:</p>
+
+  <div class="buttons"><button type="button" data-a1="joel&#x40;joel" data-a2="face&#x2e;com" onclick="location.href = 'mailto:' + this.dataset.a1 + this.dataset.a2" class="plsnospam">Email Me</button></div>
+
+  <p>Also feel free to reach out with any other feedback, questions, or just to say thanks!</p>
+
+  <p>If my work has helped to make your Disney vacation a little extra magical, you're welcome to send me a small token of gratitude via PayPal (no account required):</p>
+
+  <form action="https://www.paypal.com/donate/">
+    <div class="buttons">
+      <button type="submit" name="hosted_button_id" value="H8532XA99VVTA">Donate</button>
+    </div>
+  </form>
+
+  <p>Thanks a million!</p>
+</main>
+
+<footer>
+  <ul>
+    <li><a href=".">Documentation</a></li>
+    <li><a href="start.html">BG1 Start</a></li>
+    <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
+  </ul>
+</footer>

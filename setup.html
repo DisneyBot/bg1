@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-US">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BG1 Bookmarklet</title>
+<link rel="stylesheet" href="index.css">
+<style>
+  #bm-code {
+    display: block;
+    margin: 1em 0;
+    border: 1px solid #000;
+    padding: .8em;
+    font-size: 13px;
+    overflow-wrap: break-word;
+    user-select: all;
+  }
+</style>
+
+<script id="bm-script">
+  (() => {
+    var u = '{origin}/bg1/', d = document;
+    if (origin.match(/https:\/\/.+\.disney(?:\.go)?\.com/)) {
+      d.open();
+      d.write('<!doctype html><link rel=stylesheet href="' + u + 'bg1.css"><body>');
+      var s = d.createElement('script');
+      s.type = 'module';
+      s.src = u + 'bg1.js';
+      d.head.appendChild(s);
+    } else {
+      location.href = u + 'start.html';
+    }
+  });
+</script>
+
+<header>
+  <h1>BG1 Setup Guide</h1>
+</header>
+
+<main>
+  <ol>
+    <li>Copy the bookmarklet code: <code id="bm-code"></code></li>
+    <li>Bookmark this page.</li>
+    <li>Edit the bookmark you just created. In some browsers, a message will pop up with an <samp>Edit</samp> button after you create the bookmark. Otherwise, you'll have to scroll through your browser's bookmark list to edit it. The name of the bookmark should be <samp>BG1 Bookmarklet</samp>.</li>
+    <li>Delete the bookmark's URL/address field, paste the text you copied in the first step, and save the bookmark.</li>
+    <li><b>Android users:</b> Chrome on Android can't run bookmarklets from the default new tab page, so I recommend that you bookmark the <a href="start.html">BG1 Start</a> page as well.</li>
+  </ol>
+  <div class="buttons"><button onclick="location.replace('.#use-bookmarklet')">Done</button></div>
+</main>
+
+<script>
+  const scriptText = document
+    .getElementById('bm-script')
+    .text
+    .replace('{origin}', location.origin)
+    .trim()
+    .replace(/;$/, '')
+    .replace(/\s*([;,{}=>+])\s*/g, '$1') + '()';
+  document.getElementById('bm-code').textContent = 'javascript:' + encodeURIComponent(scriptText);
+</script>
+
+<footer>
+  <ul>
+    <li><a href="start.html">BG1 Start</a></li>
+    <li><a href="contact.html">Contact Me</a></li>
+    <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
+  </ul>
+</footer>

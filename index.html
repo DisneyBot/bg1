@@ -1,127 +1,10 @@
 <!doctype html>
-<html lang=en-US>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width, initial-scale=1">
-<title>BG1: An Unofficial, Experimental Boarding Group Client</title>
-<script id=bm-script>
-  (() => {
-    var u = '{origin}/bg1/', d = document, l = location;
-    if (l.origin.match(/https:\/\/vqguest-svc[^.]*\.wdprapps\.disney\.com/)) {
-      d.open();
-      d.write('<!doctype html><link rel=stylesheet href="' + u + 'index.css"><script type=module><\/script><body>');
-      d.scripts[0].src = u + 'index.js';
-    } else {
-      l.href = u + 'start.html';
-    }
-  })
-
-</script>
-
+<html lang="en-US">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BG1 Documentation</title>
+<link rel="stylesheet" href="index.css">
 <style>
-  html {
-    font: 16px/1.5 -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-    background: #f9f9f9;
-    color: #000;
-  }
-
-  body.overlay {
-    overflow: hidden;
-  }
-
-  body,
-  #bm-instructions > div {
-    margin: 0 auto;
-    padding: 0 .8em;
-    max-width: 48em;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-weight: 600;
-  }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  h3 {
-    font-size: 17px;
-  }
-
-  h4 {
-    font-size: 16px;
-  }
-
-  ol,
-  ul {
-    padding-left: 1.5em;
-  }
-
-  dt {
-    font-weight: 600;
-  }
-
-  dd {
-    margin-left: .8em;
-  }
-
-  button {
-    font: inherit;
-    border: 0;
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    background: #3b82f6;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  code,
-  kbd,
-  samp {
-    padding: 1px 2px;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, monospace;
-    background: #e8e8e8;
-  }
-
-  #bm-instructions {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    line-height: 1.25;
-    background: #f9f9f9;
-  }
-
-  .overlay #bm-instructions {
-    display: block;
-  }
-
-  #bm-code {
-    display: block;
-    margin: 1em 0;
-    border: 1px solid #000;
-    padding: .8em;
-    font-size: 13px;
-    word-wrap: break-word;
-    user-select: all;
-  }
-
-  .button {
-    margin: 1.5em 0;
-    text-align: center;
-  }
-
   .disclaimer {
     margin: .8em 0;
     padding: .01em 1em;
@@ -129,137 +12,86 @@
     color: #fff;
     font-weight: 600;
   }
-
-  .plsnospam:after {
-    content: ": " attr(data-a1) attr(data-a2);
-  }
 </style>
 
-<div>
-  <aside class=disclaimer>
-    <p><strong>WARNING!</strong> Use at your own risk. BG1 is highly experimental, for demonstration purposes only, and provided "as is" without warranty of any kind. It could stop working at any time for any reason. There is no guarantee that using BG1 will actually help you obtain a boarding group, and it should not be relied on for this or any other purpose. Always use the official Disney app.
-  </aside>
+<header>
+  <h1>BG1 Documentation</h1>
+</header>
 
-  <aside>
-    <p><strong>UPDATE:</strong> As of September 9, 2021, the My Disney Experience app has been updated to include many of the virtual queue user experience improvements first implemented in BG1. (Hat tip to Len Testa of <a href="https://touringplans.com/">Touring Plans</a>.)
+<main>
+  <aside class="disclaimer">
+    <p><strong>WARNING!</strong> Use at your own risk. BG1 is highly experimental, for demonstration purposes only, and provided "as is" without warranty of any kind. It is in no way endorsed by or associated with the Walt Disney Company and could stop working at any time for any reason. To ensure the intended experience, always use the official Disney app.</p>
   </aside>
-
-  <h1>BG1: An Unofficial, Experimental Boarding Group Client</h1>
 
   <h2>What is BG1?</h2>
 
-  <p>BG1 is an experimental client for obtaining a boarding group for attractions using Disney's virtual queue system.
+  <p>BG1 is an unofficial, experimental client for obtaining Genie+ Lightning Lane reservations and virtual queue boarding groups at Disney theme parks in the United States.</p>
 
-  <p>The code is open source and <a href="https://github.com/joelface/bg1">available on GitHub</a>.
+  <p>The code is open source and <a href="https://github.com/joelface/bg1">available on GitHub</a>.</p>
 
-  <h2>Why did you create it?</h2>
+  <h2>Why did you make this?</h2>
 
-  <p>I wanted to demonstrate how the virtual queue interface in the My Disney Experience (MDE) app could be tweaked to provide guests with a less frustrating user experience. Improvements in BG1 include:
-
-  <ul>
-    <li>
-      <h3>Moving the party selection screen to the beginning of the user flow</h3>
-      <p>This screen arguably needn't even exist now that the MDE app automatically selects your party for you, but it definitely shouldn't be placed in the middle of the most stressful, time-sensitive, and failure-prone part of the process. Moving it up front reduces both server load for Disney and the risk of untimely network issues and server errors for users during the precious few seconds that the queue is open.
-    <li>
-      <h3>Streamlining the user interface</h3>
-      <p>Since in BG1 you select your party in advance, the Join Boarding Group button can both check if the queue is open and, if it is, immediately request a boarding group. There's no pull-to-refresh (an action that isn't obvious to many users and can be finicky under stress) or multiple screens to tap through once the race begins.
-    <li>
-      <h3>Adding a synchronized clock (powered by <a href="https://time.is/">Time.is</a>) that shows seconds</h3>
-      <p>Anybody that's super serious about getting a boarding group makes sure that the clock they're using is as accurate as possible, and being able to see exactly how many seconds are left until the queue opens also makes the wait during that final minute less stressful.
-    <li>
-      <h3>Allowing a boarding group to be acquired for a subset of your party if necessary</h3>
-      <p>If the virtual queue server reports an issue with a member of your party that prevents you from obtaining a boarding group (e.g. no park reservation), BG1 tries again without that person rather than simply failing outright.
-  </ul>
+  <p>I originally created BG1 to demonstrate how the virtual queue interface in the Walt Disney World app could be tweaked to provide guests with a less frustrating user experience. Many of these improvements were eventually incorporated into the WDW and Disneyland apps. Since then, I've updated BG1 to bring a similarly streamlined experience to the Genie+ service.</p>
 
   <h2>How does it work?</h2>
 
-  <p>BG1 is made possible in part by an ancient Web browser feature called bookmarklets. A bookmarklet is a special kind of bookmark that, instead of loading a new page, runs some JavaScript code on the page you're already on. The BG1 bookmarklet, when run from a URL on Disney's virtual queue server, is able to make the same network requests that the MDE app makes when attempting to join a boarding group.
+  <p>BG1 is made possible in part by an ancient Web browser feature called bookmarklets. A bookmarklet is a special kind of bookmark that, instead of loading a new page, runs some JavaScript code on the page you're already on. The BG1 bookmarklet, when run on the appropriate page, is able to make the same network requests that the Disney apps make when attempting to join a boarding group or make Lightning Lane reservations.</p>
 
   <h2>How can I try it?</h2>
 
-  <p>First, reread the disclaimer at the top of the page. If you still insist on testing it out, here's how:
+  <p>First, reread the disclaimer at the top of the page. If you still insist on testing it out, here's how:</p>
 
-  <h3>Adding the bookmarklet to your browser</h3>
+  <h3 id="add-bookmarklet">Adding the bookmarklet to your browser</h3>
 
-  <p>Mobile browsers have terrible support for adding bookmarklets, but I've tried to make it as simple as possible. Just tap the button for instructions:
-  <div class=button><button onclick="showInstructions()">BG1 Setup Guide</button></div>
+  <p>Mobile browsers have terrible support for adding bookmarklets, but I've tried to make it as simple as possible:</p>
 
-  <section id=bm-instructions>
-    <div>
-      <h3>BG1 Setup Guide</h3>
+  <div class="buttons"><a href="setup.html">BG1 Setup Guide</a></div>
 
-      <ol>
-        <li>Copy the bookmarklet code: <code id=bm-code></code>
-        <li>Bookmark this page.
-        <li>Edit the bookmark you just created. In some browsers, a message will pop up with an <samp>Edit</samp> button after you create the bookmark. Otherwise, you'll have to scroll through your browser's bookmark list to edit it. The name of the bookmark should be <samp>BG1 Bookmarklet</samp>.
-        <li>Delete the bookmark's URL/address field, paste the text you copied in the first step, and save the bookmark.
-        <li><b>Android users:</b> Chrome on Android can't run bookmarklets from the default new tab page, so I recommend that you bookmark the <a href="start.html">BG1 Start Page</a> as well, and go there first every time before using the BG1 bookmarklet.
-      </ol>
-      <div class=button><button onclick="hideInstructions()">Done</button></div>
-    </div>
-  </section>
+  <h3 id="use-bookmarklet">Using the bookmarklet</h3>
 
-  <script>
-    const defaultTitle = document.title;
+  <p>BG1 is supported on the default Web browsers on both iPhone (Safari) and Android (Chrome). The process for loading BG1 is a little different on each:</p>
 
-    function showInstructions() {
-      const bookmarklet = 'javascript:' + encodeURIComponent(document
-        .getElementById('bm-script')
-        .text
-        .replace('{origin}', location.origin)
-        .trim()
-        .replace(/\s*([;,{}=>+])\s*/g, '$1') + '()');
-      document.getElementById('bm-code').textContent = bookmarklet;
-      document.body.classList.add('overlay');
-      document.title = 'BG1 Bookmarklet';
-      document.getElementById('bm-instructions').scrollTop = 0;
-    }
-
-    function hideInstructions() {
-      document.body.classList.remove('overlay');
-      document.title = defaultTitle;
-    }
-  </script>
-
-
-  <h3>Using the bookmarklet</h3>
-
-  <p>Please note: The bookmarklet has been updated to support Disneyland as well as Walt Disney World. It also now does a better job of helping you out if you try to load it from the wrong page. Those using the older, WDW-only version of the bookmarklet may wish to go through the setup guide again to update it, but it isn't required.
-
-  <p>BG1 is supported on the default Web browsers on both iPhone (Safari) and Android (Chrome). The process for loading BG1 is a little different on each:
-
-  <h4>iPhone (Safari)</h4>
+  <h4>iPhone (Safari browser)</h4>
 
   <ol>
-    <li>Run the BG1 bookmarklet, which will load the BG1 Start Page.
-    <li>Select either Walt Disney World or Disneyland.
-    <li>Run the BG1 bookmarklet again.
+    <li>Run the BG1 bookmarklet, which will load the <a href="start.html">BG1 Start</a> page.</li>
+    <li>Select the service you want to use.</li>
+    <li>The page that loads will just have some code on it. To load the BG1 interface, run the BG1 bookmarklet again.</li>
   </ol>
 
-  <h4>Android (Chrome)</h4>
+  <h4>Android (Chrome browser)</h4>
 
   <ol>
-    <li>Go to the <a href="start.html">BG1 Start Page</a> that you bookmarked during setup.
-    <li>Select either Walt Disney World or Disneyland.
-    <li>Type <kbd>BG1</kbd> into the address/search bar at the top and then tap <samp>BG1 Bookmarklet</samp> in the suggestions list.
+    <li>Go to the <a href="start.html">BG1 Start</a> page that you bookmarked during setup.</li>
+    <li>Select the service you want to use.</li>
+    <li>The page that loads will just have some code on it. To load the BG1 interface, type <kbd>BG1</kbd> into the browser's address/search bar and then tap <samp>BG1 Bookmarklet</samp> in the suggestions list.</li>
   </ol>
 
-  <p>The BG1 client should load after following these steps.
-
-  <h2>Frequently Unasked Questions</h2>
+  <h2>Questions of Varying Frequency</h2>
 
   <dl>
-    <dt>Why does BG1 make me sign into my Disney account?
+    <dt>Why is it not working? All I see is a page of "code".</dt>
     <dd>
-      <p>To be able to make the authenticated requests required to join a boarding group, BG1 needs an access token obtained by signing into your Disney account. This access token, which is only valid for a 24 hour period, is the only piece of data stored (locally in your browser) as a result of the login process.
-      <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the Disney app or website on a new device.
-    <dt>Why not a mobile app? Wouldn't you be able to make this easier to use?
+      <p>As I mentioned in the <a href="#use-bookmarklet">instructions for using the bookmarklet</a>, tapping a button on the <a href="start.html">BG1 Start</a> page doesn't load BG1 on its own. It just takes you to the page you need to be on for the bookmarklet to work. The BG1 interface will only appear after you've run the bookmarklet on the "code" page.</p>
+      <p>If it still isn't working, go into your Web browser's settings and delete the browsing data/cache. This option is usually listed under the Privacy/Security category. If that doesn't help, delete the bookmarklet and carefully follow the <a href="#add-bookmarklet">BG1 Setup Guide</a> guide again.</p>
+      </ul>
+    </dd>
+    <dt>Why does BG1 make me sign into my Disney account?</dt>
     <dd>
-      <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I made public in the apparently not-so-faint hope that some of the ideas in it might eventually make their way into the official app.
-    <dt>This is pretty neat! Are you looking for a job, by chance?
+      <p>To be able to make the authenticated requests required to join a boarding group, BG1 needs an access token obtained by signing into your Disney account. This access token, which is only valid for a 24 hour period, is the only piece of data stored (locally in your browser) as a result of the login process.</p>
+      <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the Disney app or website on a new device.</p>
+    </dd>
+    <dt>Why not a mobile app? Wouldn't you be able to make this easier to use?</dt>
     <dd>
-      <p>I am, actually! I'm a full stack Web developer who enjoys using TypeScript/JavaScript, React, PHP, Python, SQL, CSS, and more, and I'm looking for full-time employment opportunities (especially if they allow for remote work). Just tap the button below to get in touch.
-      <div class=button><button data-a1="joel&#x40;joel" data-a2="face&#x2e;com" onclick="location.href = 'mailto:' + this.dataset.a1 + this.dataset.a2 + '?subject=BG1'" class=plsnospam>Email Me</button></div>
-      <p>Thanks in advance!
+      <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I made public in the hope that some of its ideas might eventually make their way into the official app.</p>
+    </dd>
   </dl>
-</div>
+</main>
+
+<footer>
+  <ul>
+    <li><a href="start.html">BG1 Start</a></li>
+    <li><a href="contact.html">Contact Me</a></li>
+    <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
+  </ul>
+</footer>
