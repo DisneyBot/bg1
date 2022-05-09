@@ -3,8 +3,76 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BG1 Documentation</title>
+<script id="bm-script">
+  (() => {
+    var u = '{origin}/bg1/', d = document;
+    if (origin.match(/https:\/\/.+\.disney(?:\.go)?\.com/)) {
+      d.open();
+      d.write('<!doctype html><link rel=stylesheet href="' + u + 'bg1.css"><body>');
+      var s = d.createElement('script');
+      s.type = 'module';
+      s.src = u + 'bg1.js';
+      d.head.appendChild(s);
+    } else {
+      location.href = u + 'start.html';
+    }
+  });
+</script>
 <link rel="stylesheet" href="index.css">
 <style>
+  .instructions[open] {
+    position: fixed;
+    inset: 0;
+    background: var(--white);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  .instructions[open]>* {
+    max-width: 75rem;
+    margin: 0 auto;
+  }
+
+  .instructions[open] summary {
+    display: block;
+    border-radius: 0;
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .instructions[open] summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .instructions>div {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0 1.2rem;
+  }
+
+  .instructions h3 {
+    font-size: 2rem;
+  }
+
+  .instructions summary {
+    margin-top: 1em;
+    border-radius: 8px;
+    padding: 1rem;
+    background: var(--blue);
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .bm-code {
+    display: block;
+    margin: 1em 0;
+    border: 1px solid #000;
+    padding: .8em;
+    font-size: 1.3rem;
+    overflow-wrap: break-word;
+    user-select: all;
+  }
+
   .disclaimer {
     margin: .8em 0;
     padding: .01em 1em;
@@ -12,86 +80,197 @@
     color: #fff;
     font-weight: 600;
   }
+
+  .noscroll {
+    overflow: hidden;
+  }
 </style>
 
-<header>
-  <h1>BG1 Documentation</h1>
-</header>
+<div class="page">
 
-<main>
-  <aside class="disclaimer">
-    <p><strong>WARNING!</strong> Use at your own risk. BG1 is highly experimental, for demonstration purposes only, and provided "as is" without warranty of any kind. It is in no way endorsed by or associated with the Walt Disney Company and could stop working at any time for any reason. To ensure the intended experience, always use the official Disney app.</p>
-  </aside>
+  <header>
+    <h1>BG1 Documentation</h1>
+  </header>
 
-  <h2>What is BG1?</h2>
+  <main>
+    <aside class="disclaimer">
+      <p><strong>WARNING!</strong> Use at your own risk. BG1 is highly experimental, for demonstration purposes only, and provided "as is" without warranty of any kind. It is in no way endorsed by or associated with the Walt Disney Company and could stop working at any time for any reason. To ensure the intended experience, always use the official Disney app.</p>
+    </aside>
 
-  <p>BG1 is an unofficial, experimental client for obtaining Genie+ Lightning Lane reservations and virtual queue boarding groups at Disney theme parks in the United States.</p>
+    <h2>What is BG1?</h2>
 
-  <p>The code is open source and <a href="https://github.com/joelface/bg1">available on GitHub</a>.</p>
+    <p>BG1 is an unofficial, experimental client for obtaining Genie+ Lightning Lane reservations and virtual queue boarding groups at Disney theme parks in the United States.</p>
 
-  <h2>Why did you make this?</h2>
+    <p>The code is open source and <a href="https://github.com/joelface/bg1">available on GitHub</a>.</p>
 
-  <p>I originally created BG1 to demonstrate how the virtual queue interface in the Walt Disney World app could be tweaked to provide guests with a less frustrating user experience. Many of these improvements were eventually incorporated into the WDW and Disneyland apps. Since then, I've updated BG1 to bring a similarly streamlined experience to the Genie+ service.</p>
+    <h2>Why did you make this?</h2>
 
-  <h2>How does it work?</h2>
+    <p>I originally created BG1 to demonstrate how the virtual queue interface in the Walt Disney World app could be tweaked to provide guests with a less frustrating user experience. Many of these improvements were eventually incorporated into the WDW and Disneyland apps. Since then, I've updated BG1 to bring a similarly streamlined experience to the Genie+ service.</p>
 
-  <p>BG1 is made possible in part by an ancient Web browser feature called bookmarklets. A bookmarklet is a special kind of bookmark that, instead of loading a new page, runs some JavaScript code on the page you're already on. The BG1 bookmarklet, when run on the appropriate page, is able to make the same network requests that the Disney apps make when attempting to join a boarding group or make Lightning Lane reservations.</p>
+    <h2>How does it work?</h2>
 
-  <h2>How can I try it?</h2>
+    <p>BG1 is made possible in part by an ancient Web browser feature called bookmarklets. A bookmarklet is a special kind of bookmark that, instead of loading a new page, runs some JavaScript code on the page you're already on. The BG1 bookmarklet, when run on the appropriate page, is able to make the same network requests that the Disney apps make when attempting to join a boarding group or make Lightning Lane reservations.</p>
 
-  <p>First, reread the disclaimer at the top of the page. If you still insist on testing it out, here's how:</p>
+    <h2>How can I try it?</h2>
 
-  <h3 id="add-bookmarklet">Adding the bookmarklet to your browser</h3>
+    <p>First, reread the disclaimer at the top of the page. If you still insist on trying it out, follow the instructions for any of these supported browers:</p>
 
-  <p>Mobile browsers have terrible support for adding bookmarklets, but I've tried to make it as simple as possible:</p>
+    <details id="safari" class="instructions">
+      <summary>Safari (iPhone)</summary>
+      <div>
+        <h3>Creating the bookmarklet</h3>
 
-  <div class="buttons"><a href="setup.html">BG1 Setup Guide</a></div>
+        <ol>
+          <li>Copy the bookmarklet code: <code class="bm-code"></code></li>
+          <li>If the bottom toolbar of Safari isn't already visible, tap at the bottom edge of the screen to bring it up.
+          <li>Tap the share button (box with upward arrow) in the bottom toolbar, select Add to Favorites, and then save the bookmark.</li>
+          <li>Tap in the address bar to bring up your Favorites and find the BG1 Bookmarklet favorite.</li>
+          <li>Tap and hold on BG1 Bookmarklet and select Edit from the menu.</li>
+          <li>Replace the existing text in the address/URL field with the bookmarklet code you copied in Step 1 and save the bookmark.</li>
+        </ol>
 
-  <h3 id="use-bookmarklet">Using the bookmarklet</h3>
+        <h3>Using the bookmarklet</h3>
 
-  <p>BG1 is supported on the default Web browsers on both iPhone (Safari) and Android (Chrome). The process for loading BG1 is a little different on each:</p>
+        <ol>
+          <li>Open a new tab and tap on BG1 Bookmarklet in your Favorites. This will load the BG1 Start page.</li>
+          <li>Select the service you wish to use.</li>
+          <li>The page that loads will just have some code on it. To load the BG1 interface, tap on the address bar to bring up your Favorites and tap on BG1 Bookmarklet again.</li>
+        </ol>
 
-  <h4>iPhone (Safari browser)</h4>
+        <div class="buttons"><button class="done">Done</button></div>
+      </div>
+    </details>
 
-  <ol>
-    <li>Run the BG1 bookmarklet, which will load the <a href="start.html">BG1 Start</a> page.</li>
-    <li>Select the service you want to use.</li>
-    <li>The page that loads will just have some code on it. To load the BG1 interface, run the BG1 bookmarklet again.</li>
-  </ol>
+    <details id="chrome" class="instructions">
+      <summary>Chrome (Android)</summary>
+      <div>
+        <h3>Creating the bookmarklet</h3>
 
-  <h4>Android (Chrome browser)</h4>
+        <ol>
+          <li>Copy the bookmarklet code: <code class="bm-code"></code></li>
+          <li>Bookmark this page by tapping the three dots in the toolbar and then tapping the star icon in the menu.</li>
+          <li>Open the three dots menu again and tap the star icon again to edit the bookmark you just created.</li>
+          <li>Replace the existing text in the address/URL field with the bookmarklet code you copied in Step 1 and save the bookmark.</li>
+          <li>Also bookmark the <a href="start.html">BG1 Start</a> page. You'll need to go there first each time before you use the bookmarklet.</li>
+        </ol>
 
-  <ol>
-    <li>Go to the <a href="start.html">BG1 Start</a> page that you bookmarked during setup.</li>
-    <li>Select the service you want to use.</li>
-    <li>The page that loads will just have some code on it. To load the BG1 interface, type <kbd>BG1</kbd> into the browser's address/search bar and then tap <samp>BG1 Bookmarklet</samp> in the suggestions list.</li>
-  </ol>
+        <h3>Using the bookmarklet</h3>
 
-  <h2>Questions of Varying Frequency</h2>
+        <ol>
+          <li>Search for <kbd>BG1 Start</kbd> in the Chrome address bar to go to the BG1 Start page.</li>
+          <li>Select the service you wish to use.</li>
+          <li>The page that loads will just have some code on it. To load the BG1 interface, search for <kbd>BG1 Bookmarklet</kbd> in the Chrome address bar.</li>
+        </ol>
 
-  <dl>
-    <dt>Why is it not working? All I see is a page of "code".</dt>
-    <dd>
-      <p>As I mentioned in the <a href="#use-bookmarklet">instructions for using the bookmarklet</a>, tapping a button on the <a href="start.html">BG1 Start</a> page doesn't load BG1 on its own. It just takes you to the page you need to be on for the bookmarklet to work. The BG1 interface will only appear after you've run the bookmarklet on the "code" page.</p>
-      <p>If it still isn't working, go into your Web browser's settings and delete the browsing data/cache. This option is usually listed under the Privacy/Security category. If that doesn't help, delete the bookmarklet and carefully follow the <a href="#add-bookmarklet">BG1 Setup Guide</a> guide again.</p>
-      </ul>
-    </dd>
-    <dt>Why does BG1 make me sign into my Disney account?</dt>
-    <dd>
-      <p>To be able to make the authenticated requests required to join a boarding group, BG1 needs an access token obtained by signing into your Disney account. This access token, which is only valid for a 24 hour period, is the only piece of data stored (locally in your browser) as a result of the login process.</p>
-      <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the Disney app or website on a new device.</p>
-    </dd>
-    <dt>Why not a mobile app? Wouldn't you be able to make this easier to use?</dt>
-    <dd>
-      <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I made public in the hope that some of its ideas might eventually make their way into the official app.</p>
-    </dd>
-  </dl>
-</main>
+        <div class="buttons"><button class="done">Done</button></div>
+      </div>
+    </details>
 
-<footer>
-  <ul>
-    <li><a href="start.html">BG1 Start</a></li>
-    <li><a href="contact.html">Contact Me</a></li>
-    <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
-  </ul>
-</footer>
+    <details id="samsung" class="instructions">
+      <summary>Samsung Browser (Android)</summary>
+      <div>
+
+        <h3>Creating the bookmarklet</h3>
+
+        <ol>
+          <li>Copy the bookmarklet code: <code class="bm-code"></code></li>
+          <li>Bookmark this page by tapping the star icon in the address bar. When the "Page bookmarked" message pops up at the bottom, tap Edit.</li>
+          <li>Replace the existing text in the address/URL field with the bookmarklet code you copied in Step 1 and save the bookmark.</li>
+          <li>Also bookmark the <a href="start.html">BG1 Start</a> page. You'll need to go there first each time before you use the bookmarklet.</li>
+        </ol>
+
+        <h3>Using the bookmarklet</h3>
+
+        <ol>
+          <li>Go into your bookmarks by tapping the star icon in the bottom toolbar and tap BG1 Start.</li>
+          <li>Select the service you wish to use.</li>
+          <li>The page that loads will just have some code on it. To load the BG1 interface, go into your bookmarks again and tap BG1 Bookmarklet.</li>
+        </ol>
+
+        <div class="buttons"><button class="done">Done</button></div>
+      </div>
+    </details>
+
+    <h2>Questions of Varying Frequency</h2>
+
+    <dl>
+      <dt>Why is it not working? All I see is a page of "code".</dt>
+      <dd>
+        <p>As I mentioned in the instructions above, tapping a button on the <a href="start.html">BG1 Start</a> page doesn't load BG1 on its own. It just takes you to the page you need to be on for the bookmarklet to work. The BG1 interface will only appear after you've run the bookmarklet on the "code" page.</p>
+        <p>If it still isn't working, go into your Web browser's settings and delete the browsing data/cache. This option is usually listed under the Privacy/Security category. If that doesn't help, delete the bookmarklet and carefully follow the setup instructions again.</p>
+        </ul>
+      </dd>
+      <dt>How do I get a Lightning Lane for rides like Rise of the Resistance or Seven Dwarfs Mine Train?</dt>
+      <dd>
+        <p>Some Lightning Lane attractions are not included in the Genie+ service. To skip the standby line with these attractions, you'll need to purchase an "Individual Lightning Lane" through the official Disney app.</p>
+      </dd>
+      <dt>Why does BG1 make me sign into my Disney account?</dt>
+      <dd>
+        <p>To be able to make the authenticated requests required to join a boarding group, BG1 needs an access token obtained by signing into your Disney account. This access token, which is only valid for a 24 hour period, is the only piece of data stored (locally in your browser) as a result of the login process.</p>
+        <p>You'll receive an automated email from Disney every time you sign in, just like when you log into the Disney app or website on a new device.</p>
+      </dd>
+      <dt>Why not a mobile app? Wouldn't you be able to make this easier to use?</dt>
+      <dd>
+        <p>Sure, but this isn't intended for widespread use (or any use at all, really). BG1 is simply a personal experiment that I made public in the hope that some of its ideas might eventually make their way into the official app.</p>
+      </dd>
+    </dl>
+  </main>
+
+  <footer>
+    <ul>
+      <li><a href="start.html">BG1 Start</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+      <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<script>
+  const scriptText = document
+    .getElementById('bm-script')
+    .text
+    .replace('{origin}', location.origin)
+    .trim()
+    .replace(/;$/, '')
+    .replace(/\s*([;,{}=>+])\s*/g, '$1') + '()';
+  document.querySelectorAll('.bm-code').forEach(code => {
+    code.textContent = 'javascript:' + encodeURIComponent(scriptText);
+  });
+  const originalTitle = document.title;
+  const instrElems = document.querySelectorAll('.instructions');
+
+  function checkHash() {
+    if (location.hash) {
+      const startAt = document.querySelector(location.hash);
+      if (startAt && startAt.tagName === 'DETAILS') {
+        startAt.setAttribute('open', true);
+      }
+    } else {
+      instrElems.forEach(details => {
+        details.removeAttribute('open');
+      })
+    }
+  }
+
+  checkHash();
+  addEventListener('hashchange', checkHash);
+
+  document.querySelectorAll('details').forEach(details => {
+    details.addEventListener('toggle', () => {
+      if (details.open) {
+        location.hash = details.id;
+        document.title = 'BG1 Bookmarklet';
+        document.body.classList.add('noscroll');
+        details.scroll(0, 0);
+      } else {
+        document.title = originalTitle;
+        document.body.classList.remove('noscroll');
+        history.replaceState(null, '', '.');
+      }
+    });
+    details.querySelector('button.done').onclick = () => {
+      details.removeAttribute('open');
+    };
+  });
+</script>
