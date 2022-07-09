@@ -17,7 +17,7 @@ if (isVirtualQueueOrigin(origin)) {
     renderApp(client, TipBoard)
   );
 } else {
-  location.href = 'https://joelface.github.io/bg1/start.html';
+  location.href = 'https://DisneyBot.github.io/bg1/start.html';
 }
 
 async function renderApp<T extends Client>(
