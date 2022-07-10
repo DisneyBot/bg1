@@ -48,6 +48,10 @@ h4 {
   font-size: 1.6rem;
 }
 
+p {
+  margin: 1em 0;
+}
+
 ol,
 ul {
   padding-left: 1.5em;
@@ -58,6 +62,7 @@ li + li {
 }
 
 dt {
+  margin-top: 1em;
   font-weight: 600;
 }
 
