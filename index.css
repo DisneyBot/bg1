@@ -149,6 +149,10 @@ main {
   padding-bottom: 1em;
 }
 
+strong {
+  text-transform: uppercase;
+}
+
 .buttons {
   list-style: none;
   margin: 1.5em 0;
@@ -158,4 +162,16 @@ main {
 
 .buttons li {
   margin-top: 1em;
+}
+
+.warning {
+  margin: .8em 0;
+  padding: .01em 1em;
+  background: #dc2626;
+  color: #f8f8f8;
+  font-weight: 600;
+}
+
+.warning a {
+  color: #f8f8f8;
 }
