@@ -5,7 +5,7 @@
 <title>BG1 Documentation</title>
 <script id="bm-script">
   (() => {
-    var u = '{origin}/bg1/', d = document;
+    var u = 'https://joelface.github.io/bg1/', d = document;
     if (origin.match(/https:\/\/.+\.disney(?:\.go)?\.com/)) {
       d.open();
       d.write('<!doctype html><link rel=stylesheet href="' + u + 'bg1.css"><body>');
@@ -212,7 +212,6 @@
   const scriptText = document
     .getElementById('bm-script')
     .text
-    .replace('{origin}', location.origin)
     .trim()
     .replace(/;$/, '')
     .replace(/\s*([;,{}=>+])\s*/g, '$1') + '()';
