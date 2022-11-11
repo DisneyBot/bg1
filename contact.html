@@ -5,9 +5,25 @@
 <title>About BG1</title>
 <link rel="stylesheet" href="index.css">
 <style>
+  .buttons.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  .buttons.row li {
+    margin-top: 0;
+  }
+
+  .buttons.row a {
+    min-width: 0;
+  }
+
   .plsnospam:after {
     content: attr(data-a1) attr(data-a2);
   }
+
 </style>
 
 <header>
@@ -21,18 +37,20 @@
 
   <p>Since then, I've updated BG1 to help guests get the most out of the Genie+ service, with a more user-friendly, streamlined interface for finding and booking the best Lightning Lanes.</p>
 
-  <h2>Show Your Support</h2>
+  <h2 id="donate">Show Your Support</h2>
 
-  <p>If my work has helped make your Disney vacation extra magical, you're welcome to support my efforts using either Venmo or PayPal (no account required). Thanks in advance!</p>
+  <p>If my work has helped make your Disney vacation extra magical, you're welcome to support my efforts using the buttons below for PayPal (no account required) or Venmo. iPhone users can also send donations via Apple Cash to the email address listed on this page.</p>
 
-  <ul class="buttons">
-    <li><a href="https://www.venmo.com/u/joelbruick">Give via Venmo</a></li>
-    <li><a href="https://www.paypal.com/donate/?hosted_button_id=H8532XA99VVTA">Give via PayPal</a></li>
+  <p>Thanks in advance for your generosity!</p>
+
+  <ul class="buttons row">
+    <li><a title="Give via PayPal" href="https://www.paypal.com/donate/?hosted_button_id=H8532XA99VVTA">PayPal</a></li>
+    <li><a title="Give via Venmo" href="https://www.venmo.com/u/joelbruick">Venmo</a></li>
   </ul>
 
-  <h2>Contact Me</h2>
+  <h2 id="contact">Contact Me</h2>
 
-  <p>Have a comment? A question? A full-time remote work opportunity? Just want to say thanks? Feel free to email me:</p>
+  <p>If you'd like to get in touch, feel free to email me:</p>
 
   <div class="buttons"><button type="button" data-a1="joel&#x40;joel" data-a2="face&#x2e;com" onclick="location.href = 'mailto:' + this.dataset.a1 + this.dataset.a2" class="plsnospam"></button></div>
 </main>

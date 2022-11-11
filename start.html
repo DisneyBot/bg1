@@ -6,8 +6,30 @@
 <link rel="stylesheet" href="index.css">
 
 <style>
+  .donate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    position: sticky;
+    bottom: 0;
+    margin: 0 -1.2rem;
+    padding: .5em 1.2em;
+    font-size: 1.6rem;
+    text-align: center;
+    background: #cee0fd;
+    color: #000;
+  }
+
+  .donate .button {
+    min-width: auto;
+    padding: .3em .8em;
+    text-decoration: none;
+    color: #f8f8f8;
+  }
+
   .skip-reminder {
-    margin-top: 6rem;
+    margin-top: 5rem;
     font-size: 1.5rem;
     text-align: center;
   }
@@ -54,10 +76,15 @@
   </div>
 </main>
 
+<div class="donate">
+  <div>Want to help support BG1?</div>
+  <div><a href="contact.html#donate" class="button">Donate</a></div>
+</div>
+
 <footer>
   <ul>
     <li><a href=".">Documentation</a></li>
-    <li><a href="contact.html">Donate</a></li>
+    <li><a href="contact.html">About BG1</a></li>
     <li><a href="https://github.com/joelface/bg1">GitHub</a></li>
   </ul>
 </footer>

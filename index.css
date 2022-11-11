@@ -76,13 +76,14 @@ a {
 }
 
 button,
+.button,
 .buttons a {
   display: inline-block;
   min-width: 25rem;
   margin: 0;
   border: 0;
   border-radius: 8px;
-  padding: 12px;
+  padding: .7em 1em;
   background: var(--blue);
   color: #fff;
   font: inherit;
