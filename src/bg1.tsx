@@ -24,7 +24,7 @@ function main() {
       renderApp(client, Merlock, authStore)
     );
   } else {
-    location.href = 'https://joelface.github.io/bg1/start.html';
+    location.href = 'https://DisneyBot.github.io/bg1/start.html';
   }
 }
 
