@@ -196,7 +196,7 @@ export default function BookExperience({
       <PartyProvider value={party ?? EMPTY_PARTY}>
         {prebooking && party ? (
           <Prebooking
-            startTime={experience.flex.enrollmentStartTime || '07:00:00'}
+            startTime={experience.flex.enrollmentStartTime || '03:00:00'}
             onRefresh={checkAvailability}
           />
         ) : noGuestsFound ? (
